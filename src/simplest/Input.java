@@ -62,6 +62,19 @@ public class Input {
         return stringList;
     }
 
+    public static void wrapping() {
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(System.in));
+        try {
+            String line;
+            while ((line = in.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }
+
     /**
      *
      * @param args
