@@ -14,7 +14,7 @@ public class Standard {
         try {
             while ((c = System.in.read()) != -1) {
                 b.append((char) c);
-                //1byte ずつ読み込みbに追加
+                //read 1byte data and append b
             }
         } catch (IOException ex) {
             System.err.println("err");

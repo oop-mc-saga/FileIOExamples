@@ -12,10 +12,10 @@ import java.util.List;
  */
 public class Input {
 
-    static final String ENC = "UTF-8";//文字コード
+    static final String ENC = "UTF-8";//character code
 
     /**
-     * ファイルから文字を読み込み
+     * Read characters from a file
      *
      * @param filename
      * @return
@@ -23,23 +23,23 @@ public class Input {
      */
     static public String openInputStream(String filename)
             throws IOException {
-        File file = new File(filename);//ファイル指定
+        File file = new File(filename);//Specify file for reading
         StringBuilder sb = new StringBuilder();
-        //入力バッファを開く
+        //Open input buffer
         try ( BufferedInputStream in
                 = new BufferedInputStream(
                         new FileInputStream(file))) {
             int n;
-            while ((n = in.read()) != -1) {//１バイト毎に読み込み
-                char c = (char) n;//コードを文字へ変換
-                sb.append(c);//ビルダへ追加
+            while ((n = in.read()) != -1) {//Read byte by byte
+                char c = (char) n;//Convert byte to character
+                sb.append(c);//append to string builder
             }
         }
         return sb.toString();
     }
 
     /**
-     * ファイルから内容を読み出し、文字列として返す
+     * Read lines from a file and return them as a string
      *
      * @param filename
      * @return
@@ -54,7 +54,7 @@ public class Input {
                 new InputStreamReader(
                         new FileInputStream(file), ENC))) {
             String line;
-            //一行毎に読み込み
+            //Read line by line
             while ((line = in.readLine()) != null) {
                 stringList.add(line);
             }
