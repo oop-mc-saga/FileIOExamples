@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Fileの内容を一行単位で複写する
+ * Copy a text file line by line
  *
  * @author tadaki
  */
@@ -15,7 +15,7 @@ public class FileCopy {
     private final BufferedWriter out;//Writer
 
     /**
-     * 入出力ファイルを指定
+     * Specify source file
      *
      * @param inFileName
      * @param outFileName
@@ -28,9 +28,9 @@ public class FileCopy {
     }
 
     /**
-     * ファイル名を指定してReaderを開く
+     * Open reader by specifying input file
      *
-     * ファイル名を指定しないと標準入力を開く
+     * Open standard input if input file is not specified
      *
      * @param inputFileName
      * @return
@@ -38,16 +38,16 @@ public class FileCopy {
      */
     static public BufferedReader openReader(String inputFileName)
             throws FileNotFoundException {
-        //標準入力をデフォルトとして指定
+        //Open reader for standard input as default
         BufferedReader reader
                 = new BufferedReader(new InputStreamReader(System.in));
-        //ファイル名を指定されている場合
+        //If input file name is specified
         if (inputFileName != null && !inputFileName.isEmpty()) {
             File inFile = new File(inputFileName);
-            //指定されたファイルが開けない場合に例外を投げる
+            //If file can not be accessed, throw exception
             if (!inFile.isFile() || !inFile.canRead()) {
-                String message = "入力ファイル"
-                        + inFile.getAbsolutePath() + "がありません。";
+                String message = "File "
+                        + inFile.getAbsolutePath() + " not found";
                 throw new FileNotFoundException(message);
             }
             reader = new BufferedReader(
@@ -57,9 +57,9 @@ public class FileCopy {
     }
 
     /**
-     * ファイル名を指定してWriterを開く
+     * Open writer by specifying output file
      *
-     * ファイル名を指定しないと標準出力を開く
+     * Open standard output if input file is not specified
      *
      * @param outFileName
      * @return
@@ -67,18 +67,18 @@ public class FileCopy {
      */
     static public BufferedWriter openWriter(String outFileName)
             throws IOException {
-        //標準出力をデフォルトとして開く
+        //Open writer for standard output as default
         BufferedWriter writer
                 = new BufferedWriter(new OutputStreamWriter(System.out));
-        //ファイル名を指定されている場合
+        //If output file name is specified
         if (outFileName != null && !outFileName.isEmpty()) {
             File outFile = new File(outFileName);
-            if (!outFile.exists()) {//ファイルが存在しない場合には、新規に作成
+            if (!outFile.exists()) {//If file does not exist, create new one
                 outFile.createNewFile();
             }
-            if (!outFile.canWrite()) {//ファイルに書けない場合
-                String message = "出力ファイル"
-                        + outFile.getAbsolutePath() + "には書けません。";
+            if (!outFile.canWrite()) {//If file is not writable
+                String message = "File "
+                        + outFile.getAbsolutePath() + " is not writable";
                 throw new IOException(message);
             }
             writer = new BufferedWriter(
@@ -88,15 +88,15 @@ public class FileCopy {
     }
 
     /**
-     * ファイルの内容をコピーする
+     * Copy contents of file
      *
-     * @return コピーした行数を返す
+     * @return The number of lines copied
      * @throws IOException
      */
     public int copyData() throws IOException {
         int n = 0;
         String line;
-        //一行毎にコピー
+        //Copy line by line
         while ((line = in.readLine()) != null) {
             n++;
             out.write(line);
