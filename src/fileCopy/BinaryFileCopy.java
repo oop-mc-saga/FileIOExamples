@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Fileの内容を一行単位で複写する
+ * Copy a binary file
  *
  * @author tadaki
  */
@@ -15,7 +15,7 @@ public class BinaryFileCopy {
     private final FileOutputStream out;//Writer
 
     /**
-     * 入出力ファイルを指定
+     * Specify source file
      *
      * @param inFileName
      * @param outFileName
@@ -28,7 +28,7 @@ public class BinaryFileCopy {
     }
 
     /**
-     * ファイル名を指定してInputStreamを開く
+     * Open inputStream by specifying input file
      *
      * @param inputFileName
      * @return
@@ -39,10 +39,10 @@ public class BinaryFileCopy {
         FileInputStream in = null;
         if (inputFileName != null && !inputFileName.isEmpty()) {
             File inFile = new File(inputFileName);
-            //指定されたファイルが開けない場合に例外を投げる
+            //If file can not be accessed, throw exception
             if (!inFile.isFile() || !inFile.canRead()) {
-                String message = "入力ファイル"
-                        + inFile.getAbsolutePath() + "がありません。";
+                String message = "File "
+                        + inFile.getAbsolutePath() + " not found";
                 throw new FileNotFoundException(message);
             }
             in = new FileInputStream(inFile);
@@ -51,7 +51,7 @@ public class BinaryFileCopy {
     }
 
     /**
-     * ファイル名を指定してOutputStreamを開く
+     * Open outputStream by specifying output file
      *
      * @param outFileName
      * @return
@@ -62,12 +62,12 @@ public class BinaryFileCopy {
         FileOutputStream out = null;
         if (outFileName != null && !outFileName.isEmpty()) {
             File outFile = new File(outFileName);
-            if (!outFile.exists()) {//ファイルが存在しない場合には、新規に作成
+            if (!outFile.exists()) {//If file does not exist, create new one
                 outFile.createNewFile();
             }
-            if (!outFile.canWrite()) {//ファイルに書けない場合
-                String message = "出力ファイル"
-                        + outFile.getAbsolutePath() + "には書けません。";
+            if (!outFile.canWrite()) {//If file is not writable
+                String message = "File "
+                        + outFile.getAbsolutePath() + " is not writable";
                 throw new IOException(message);
             }
             out = new FileOutputStream(outFile);
@@ -76,15 +76,15 @@ public class BinaryFileCopy {
     }
 
     /**
-     * ファイルの内容をコピーする
+     * Copy contents of file
      *
-     * @return コピーしたバイト数を返す
+     * @return THe number of bytes copied
      * @throws IOException
      */
     public int copyData() throws IOException {
         int n = 0;
         int b;
-        //一バイト毎にコピー
+        //copy byte by byte
         while ((b = in.read()) != -1) {
             n++;
             out.write(b);
