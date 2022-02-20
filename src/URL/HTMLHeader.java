@@ -1,7 +1,7 @@
 package URL;
 
 /**
- * html中のheader tagの情報を保存するクラス
+ * Class for keeping header tags
  *
  * @author tadaki
  */

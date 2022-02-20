@@ -25,9 +25,9 @@ public class ReadURL {
     private String htmlContent = null;
 
     /**
-     * コンストラクタ
+     * contructor
      *
-     * @param urlString URLを表す文字列
+     * @param urlString String expressing URL
      * @throws java.io.IOException
      */
     public ReadURL(String urlString) throws IOException {
@@ -39,7 +39,7 @@ public class ReadURL {
     }
 
     /**
-     * header部のキーと値の組を文字列として返す
+     * Get pairs of keys and values in header part
      *
      * @return
      */
@@ -54,7 +54,7 @@ public class ReadURL {
     }
 
     /**
-     * text/htmlの場合にコンテンツを読み込む
+     * read contents for text/html cases
      *
      * @return
      * @throws IOException
@@ -71,11 +71,10 @@ public class ReadURL {
         }
 
         StringBuilder sb;
-        //内容を一つの文字列として保存
-        try ( //urlをストリームとして開く
+        //Read contents as a string
+        try ( //open url as stream
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(urlConnection.getInputStream()))) {
-            //内容を一つの文字列として保存
             sb = new StringBuilder();
             String line;
             while ((line = in.readLine()) != null) {
@@ -86,7 +85,7 @@ public class ReadURL {
     }
 
     /**
-     * content-typeがtext/htmlならば真
+     * check content-type is text/html
      *
      * @return
      * @throws IOException
@@ -98,7 +97,7 @@ public class ReadURL {
     }
 
     /**
-     * pageのtitleを得る
+     * get page title
      *
      * @return
      * @throws IOException
@@ -111,7 +110,7 @@ public class ReadURL {
             return null;
         }
         String tp = "<title>(.+)</title>";
-        //複数行対応、及び大文字小文字を区別しない
+        //Make compatible for multilines and case insensitive
         Pattern pattern = Pattern.compile(tp,
                 Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
         Matcher m = pattern.matcher(htmlContent);
@@ -122,9 +121,9 @@ public class ReadURL {
     }
 
     /**
-     * headerを読む。headerはheaderListに保存する
+     * read header part int list
      *
-     * @return headerの数
+     * @return the number of header
      * @throws IOException
      */
     public int readHeaders() throws IOException {
@@ -135,7 +134,7 @@ public class ReadURL {
             return 0;
         }
         int n = 0;
-        //複数行にまたがる正規表現として、ヘッダを定義
+        //Make compatible for multilines
         Pattern pattern = Pattern.compile("<h(\\d+)>(.+)</h\\1>",
                 Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
         Matcher m = pattern.matcher(htmlContent);
