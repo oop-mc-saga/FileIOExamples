@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,10 +31,11 @@ public class ReadURL {
      * contructor
      *
      * @param urlString String expressing URL
-     * @throws java.io.IOException
+     * @throws java.net.MalformedURLException
+     * @throws java.net.URISyntaxException
      */
-    public ReadURL(String urlString) throws IOException {
-        URL url = new URL(urlString);
+    public ReadURL(String urlString) throws IOException, URISyntaxException {
+        URL url = new URI(urlString).toURL();
         urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestProperty("Accept-Language", "ja");
         headerFields = urlConnection.getHeaderFields();

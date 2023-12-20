@@ -83,14 +83,14 @@ public class BinaryFileCopy {
      */
     public int copyData() throws IOException {
         int n = 0;
-
-        
-        
-        
-        
-        
-        
-        
+        int b;
+        //copy byte by byte
+        while ((b = in.read()) != -1) {
+            n++;
+            out.write(b);
+        }
+        in.close();
+        out.close();
         return n;
     }
 

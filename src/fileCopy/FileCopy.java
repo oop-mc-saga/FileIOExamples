@@ -112,7 +112,7 @@ public class FileCopy {
      */
     public static void main(String[] args) {
         try {
-            FileCopy main = new FileCopy("input.txt", "output.txt");
+            FileCopy main = new FileCopy("input2.txt", "output.txt");
             int n = main.copyData();
             System.err.println("copy " + n + "lines");
         } catch (IOException ex) {
