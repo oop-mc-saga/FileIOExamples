@@ -6,7 +6,7 @@ import java.io.IOException;
  *
  * @author tadaki
  */
-public class Standard {
+public class StandardInput {
 
     public static void standardInput() {
         StringBuilder b = new StringBuilder();

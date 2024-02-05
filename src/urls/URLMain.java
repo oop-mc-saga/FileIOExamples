@@ -1,4 +1,4 @@
-package URL;
+package urls;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

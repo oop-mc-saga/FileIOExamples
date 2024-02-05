@@ -1,4 +1,4 @@
-package Exception;
+package exceptions;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
  *
  * @author tadaki
  */
-public class ExceptionSample {
+public class ExceptionExample {
 
     public static double str2Double(String str)
             throws NumberFormatException {

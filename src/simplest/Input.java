@@ -26,7 +26,7 @@ public class Input {
         File file = new File(filename);//Specify file for reading
         StringBuilder sb = new StringBuilder();
         //Open input buffer
-        try ( BufferedInputStream in
+        try (BufferedInputStream in
                 = new BufferedInputStream(
                         new FileInputStream(file))) {
             int n;
@@ -45,12 +45,12 @@ public class Input {
      * @return
      * @throws IOException
      */
-    static List<String> openReader(String filename)
+    static public List<String> openReader(String filename)
             throws IOException {
         File file = new File(filename);
         List<String> stringList
                 = Collections.synchronizedList(new ArrayList<>());
-        try ( BufferedReader in = new BufferedReader(
+        try (BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         new FileInputStream(file), ENC))) {
             String line;
@@ -62,17 +62,21 @@ public class Input {
         return stringList;
     }
 
-    public static void wrapping() {
+    public static List<String> wrapping() {
+        List<String> stringList
+                = Collections.synchronizedList(new ArrayList<>());
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(System.in));
         try {
+
             String line;
             while ((line = in.readLine()) != null) {
-                System.out.println(line);
+                stringList.add(line);
             }
         } catch (IOException ex) {
             System.err.println(ex);
         }
+        return stringList;
     }
 
     /**

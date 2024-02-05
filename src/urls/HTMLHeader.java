@@ -1,4 +1,4 @@
-package URL;
+package urls;
 
 /**
  * Class for keeping header tags

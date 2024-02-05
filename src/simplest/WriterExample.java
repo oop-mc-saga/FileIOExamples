@@ -10,7 +10,7 @@ import java.io.OutputStreamWriter;
  *
  * @author tadaki
  */
-public class WriterSample {
+public class WriterExample {
 
     public static void wrapping() {
         BufferedWriter out = new BufferedWriter(

@@ -8,7 +8,7 @@ import java.io.PrintStream;
  *
  * @author tadaki
  */
-public class PrintStreamSample {
+public class PrintStreamExample {
 
     /**
      * @param args the command line arguments
