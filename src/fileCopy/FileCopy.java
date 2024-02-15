@@ -94,16 +94,19 @@ public class FileCopy {
      * @throws IOException
      */
     public int copyData() throws IOException {
-        int n = 0;
-        String line;
-        //Copy line by line
-        while ((line = in.readLine()) != null) {
-            n++;
-            out.write(line);
-            out.newLine();
+        int n;
+        try (in) {
+            try (out) {
+                n = 0;
+                String line;
+                //Copy line by line
+                while ((line = in.readLine()) != null) {
+                    n++;
+                    out.write(line);
+                    out.newLine();
+                }
+            }
         }
-        in.close();
-        out.close();
         return n;
     }
 
