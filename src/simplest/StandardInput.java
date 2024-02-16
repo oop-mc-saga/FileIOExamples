@@ -14,7 +14,7 @@ public class StandardInput {
         try {
             while ((c = System.in.read()) != -1) {
                 b.append((char) c);
-                //read 1byte data and append b
+                //read 1byte data and append to b
             }
         } catch (IOException ex) {
             System.err.println("err");

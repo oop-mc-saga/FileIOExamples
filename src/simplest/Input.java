@@ -21,7 +21,7 @@ public class Input {
      * @return
      * @throws IOException
      */
-    static public String openInputStream(String filename)
+    static public String readFromInputStream(String filename)
             throws IOException {
         File file = new File(filename);//Specify file for reading
         StringBuilder sb = new StringBuilder();
@@ -45,7 +45,7 @@ public class Input {
      * @return
      * @throws IOException
      */
-    static public List<String> openReader(String filename)
+    static public List<String> readFromReader(String filename)
             throws IOException {
         File file = new File(filename);
         List<String> stringList
@@ -86,10 +86,10 @@ public class Input {
      */
     public static void main(String[] args) throws IOException {
         String filename = "input.txt";
-        String readString = openInputStream(filename);
+        String readString = readFromInputStream(filename);
         System.out.println(readString);
         System.out.println("--------------");
-        List<String> lines = openReader(filename);
+        List<String> lines = readFromReader(filename);
         lines.forEach(
                 s -> System.out.println(s)
         );
