@@ -17,7 +17,7 @@ public class PrintStreamExample {
     public static void main(String[] args) 
             throws FileNotFoundException {
         File file = new File("PrintStreamSampleOutput.txt");
-        try ( PrintStream out = new PrintStream(file)) {
+        try (PrintStream out = new PrintStream(file)) {
             for (int i = 0; i < 100; i++) {
                 int x = (int) (100 * Math.random());
                 out.println(x);

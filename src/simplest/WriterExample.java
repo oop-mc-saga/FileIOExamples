@@ -13,6 +13,7 @@ import java.io.OutputStreamWriter;
 public class WriterExample {
 
     public static void wrapping() {
+        //Wrap System.out with BufferedWriter
         BufferedWriter out = new BufferedWriter(
                 new OutputStreamWriter(System.out));
         try {

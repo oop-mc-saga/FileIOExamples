@@ -55,7 +55,7 @@ public class Input {
                         new FileInputStream(file), ENC))) {
             String line;
             //Read line by line
-            while ((line = in.readLine()) != null) {
+            while ((line = in.readLine()) != null) {//
                 stringList.add(line);
             }
         }
@@ -65,10 +65,10 @@ public class Input {
     public static List<String> wrapping() {
         List<String> stringList
                 = Collections.synchronizedList(new ArrayList<>());
+        //wrap System.in with BufferedReader
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(System.in));
         try {
-
             String line;
             while ((line = in.readLine()) != null) {
                 stringList.add(line);
