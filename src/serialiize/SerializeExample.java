@@ -17,11 +17,13 @@ public class SerializeExample {
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      */
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) 
+            throws IOException, ClassNotFoundException {
         String filename = "record.ser";
         File file = new File(filename);
-        Data data = null;
+        Data data;
         if (file.exists()) {
             try (ObjectInputStream input
                     = new ObjectInputStream(new FileInputStream(file))) {
@@ -30,7 +32,6 @@ public class SerializeExample {
             }
         } else {
             Integer[] record = {4, 2, 6, 4};
-            // TODO code application logic here
             data = new Data("example1", Arrays.asList(record));
             try (ObjectOutputStream output
                     = new ObjectOutputStream(new FileOutputStream(file))) {
@@ -40,5 +41,4 @@ public class SerializeExample {
         }
         System.out.println(data);
     }
-
 }

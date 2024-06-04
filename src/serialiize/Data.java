@@ -8,7 +8,7 @@ import java.util.List;
  * @author tadaki
  */
 public record Data(String name, List<Integer> result) implements Serializable{
-    public Data {
-        result = List.copyOf(result);
+    public Data { //constructor
+        result = List.copyOf(result); //immutable copy
     }
 }
